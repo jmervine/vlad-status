@@ -16,8 +16,8 @@ Adds support to Vlad for checking app and web server status.
 
 == SYNOPSIS:
 
-  $ rake <env> vlad:web:status
-  $ rake <env> vlad:app:status
+  $ rake <env> vlad:status_web
+  $ rake <env> vlad:status_app
 
 
 == REQUIREMENTS:
