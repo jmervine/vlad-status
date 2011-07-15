@@ -27,7 +27,6 @@ Adds support to Vlad for checking app and web server status.
 == INSTALL:
 
     $ sudo gem install vlad-status
-	^-- coming soon
 
 == VARIABLES:
 
