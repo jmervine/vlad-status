@@ -29,18 +29,14 @@ namespace :vlad do
 
   end
 
-  namespace :web do
-    desc "Status of web servers."
-    remote_task :status, :roles => :web do
-      run status_cmd(web.to_s)
-    end
+  desc "Status of web servers."
+  remote_task :status_web do
+    run status_cmd(web.to_s)
   end
 
-  namespace :app do
-    desc "Status of app servers."
-    remote_task :status, :roles => :app do
-      run status_cmd(app.to_s)
-    end
+  desc "Status of app servers."
+  remote_task :status_app do
+    run status_cmd(app.to_s)
   end
 
 end
