@@ -1,0 +1,7 @@
+.autotest
+History.txt
+lib/vlad/status.rb
+Manifest.txt
+Rakefile
+README.txt
+test/test_vlad_status.rb
