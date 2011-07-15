@@ -2,7 +2,7 @@ require 'vlad'
 
 module Vlad
   module Status
-    VERSION = '0.0.1' #:nodoc:
+    VERSION = '0.0.2' #:nodoc:
   end
 end
 
