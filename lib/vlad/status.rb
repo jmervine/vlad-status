@@ -2,12 +2,18 @@ require 'vlad'
 
 module Vlad
   module Status
-    VERSION = '0.0.2' #:nodoc:
+    VERSION = '0.0.2' 
   end
 end
 
 namespace :vlad do
 
+  # Generate the bash command to output a clean status, it should look something like:
+  #
+  #   Getting status for <server type> on myserver.com
+  #    master processes running: #
+  #    worker processes running: #
+  #
   def status_cmd(svr)
 
     master = "master"
