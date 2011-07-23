@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Fri Jul 22 16:58:31 -0700 2011</td>
+      <td>Fri Jul 22 17:21:44 -0700 2011</td>
     </tr>
     </table>
   </div>
@@ -109,8 +109,7 @@
         <a name="M000001"></a>
 
         <div class="method-heading">
-          <a href="status_rb.src/M000001.html" target="Code" class="method-signature"
-            onclick="popupCode('status_rb.src/M000001.html');return false;">
+          <a href="#M000001" class="method-signature">
           <span class="method-name">status_cmd</span><span class="method-args">(svr)</span>
           </a>
         </div>
@@ -125,6 +124,33 @@ something like:
    master processes running: #
    worker processes running: #
 </pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000001-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/vlad/status.rb, line 17</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status_cmd</span>(<span class="ruby-identifier">svr</span>)
+
+    <span class="ruby-identifier">master</span> = <span class="ruby-value str">&quot;master&quot;</span>
+    <span class="ruby-identifier">worker</span> = <span class="ruby-value str">&quot;worker&quot;</span>
+    <span class="ruby-identifier">psub</span> = <span class="ruby-value str">&quot;**REPLACE**&quot;</span>
+    
+    <span class="ruby-identifier">ps</span> = []
+    <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">%(ps aux)</span>
+    <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%(grep &quot;#{svr}&quot;)</span>
+    <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%(grep &quot;#{psub}&quot;)</span>
+    <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">%(grep -v grep)</span>
+    <span class="ruby-identifier">ps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">%(wc -l)</span>
+
+    <span class="ruby-identifier">cmd</span> = []
+    <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%(echo &quot;Getting status for #{svr} on `hostname`&quot;)</span>
+    <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%(echo &quot; #{master} processes running: `#{ps.join(&quot; | &quot;).gsub(psub, master)}`&quot;)</span>
+    <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%(echo &quot; #{worker} processes running: `#{ps.join(&quot; | &quot;).gsub(psub, worker)}`&quot;)</span>
+    <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &amp;&amp; &quot;</span>)
+
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
