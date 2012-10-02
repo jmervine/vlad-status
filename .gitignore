@@ -1,2 +1,4 @@
 pkg
 .yardoc
+vendor
+doc
